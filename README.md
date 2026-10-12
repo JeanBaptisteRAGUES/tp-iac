@@ -27,7 +27,7 @@ Questions :
 **Quelles ressources apparaissent dans terraform state list ?**
 Ça affiche la liste des ressources que Terraform suit dans son fichier état.
 
-$ terraform state list
+>terraform state list
 docker_container.web
 docker_image.nginx
 docker_network.app_network
@@ -48,7 +48,7 @@ Publier cet état dans un dépôt public peut exposer ces informations sensibles
 Donc pour des raisons de sécurité évidentes on ne le fait pas.  
 
 
-14. Observer une dérive de configuration
+### 14. Observer une dérive de configuration
 3. Analysez le plan et les différences détectées.
 Changes to Outputs:
   ~ container_name = "tp-iac-dev" -> "tp-iac-nginx"
@@ -56,14 +56,53 @@ Changes to Outputs:
   ~ website_url    = "http://localhost:8081" -> "http://localhost:8080"
 
 
-15. Versionner avec Git
+### 15. Versionner avec Git
 Travail demandé : expliquez comment l'historique Git facilite la revue, la collaboration et le retour sur une modification.
 Git est un outil de versionning qui possède un historique et des commandes spéciales pour revenir à la version d'avant si  
 on veut effectuer un retour sur une modification.  
 Grace à d'autres outils comme GitHub il permet de faciliter la revue et la collaboration en permettant à d'autres utilisateurs  
 d'apporter des modifications au code.  
 
+### 19.Exercices complémentaires
+
+**Exercice 1 :** 
+Changes to Outputs:
+  ~ container_name = "tp-iac-nginx" -> "tp-iac-web"
+  ~ network_name   = "tp-iac-nginx-network" -> "tp-iac-web-network"
+
+Le com du conteneur a été changé donc son nom ainsi que le nom du réseau associé changent aussi.
 
 
+**Exercice 2 :**
+Changes to Outputs:
+  ~ website_url    = "http://localhost:8080" -> "http://localhost:8082"
+
+
+**Exercice 3 :**
+variable "network_name" {  
+  description = "Nom du réseau Docker"  
+  type        = string  
+  default     = "tp-iac-web-network"  
+
+  validation {  
+    condition     = can(regex("^[a-zA-Z0-9][a-zA-Z0-9_.-]*$", var.network_name))  
+    error_message = "Le nom du réseau contient des caractères non autorisés."  
+  }  
+}  
+
+**Ecercice 4 :**
+Listage des ressources Terraform avec "terraform state list"  
+Dans docker_container qui se situe dans main.tf, on trouve :  
+image = docker_image.nginx.image_id
+networks_advanced {  
+    name = docker_network.app_network.name  
+}  
+Donc des références directes entre l'image, le réseau et le conteneur.  
+Le conteneur a besoin d'une image pour définir son système de fichiers et son environnement.  
+Le conteneur doit être connecté à un réseau Docker qui doit exister à l'avance.  
+
+**Exercice 5 :**
+Après avoir arreté le conteneur Docker et lancé la commande terraform plan, le message  
+"docker_container.web will be created" apparaît.  
 
 
