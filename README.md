@@ -58,9 +58,9 @@ Changes to Outputs:
 
 ### 15. Versionner avec Git
 Travail demandé : expliquez comment l'historique Git facilite la revue, la collaboration et le retour sur une modification.
-Git est un outil de versionning qui possède un historique et des commandes spéciales pour revenir à la version d'avant si  
+Git est un outil de versionning qui possède un historique et des commandes spéciales pour revenir à la version d'avant si
 on veut effectuer un retour sur une modification.  
-Grace à d'autres outils comme GitHub il permet de faciliter la revue et la collaboration en permettant à d'autres utilisateurs  
+Grace à d'autres outils comme GitHub il permet de faciliter la revue et la collaboration en permettant à d'autres utilisateurs
 d'apporter des modifications au code.  
 
 ### 19.Exercices complémentaires  
@@ -124,3 +124,51 @@ Si on supprime manuellement l'état de Terraform, celà ne supprime pas les cont
 De plus, Terraform perd le suivi de ces ressources et des conflits peuvent apparaître.  
 
 
+### 20. Questions de compréhension  
+**1. Quelle est la différence entre terraform init, terraform plan et terraform apply ?**  
+terraform init : met en place terraform sans proposer de modification  
+terraform plan : propose des modifications, mais sans les appliquer  
+terraform apply : applique les modifications proposées  
+
+**2. Quel est le rôle d'un provider Terraform ?** 
+Le provider Terraform permet la création de serveurs, réseaux et stockages cloud.  
+
+**3. À quoi sert le fichier terraform.tfstate ?**  
+Le fichier terraform.tfstate permet de suivre l'état actuel de terraform ainsi que l'accès au ressources dont il dépend.  
+
+**4. Pourquoi utilise-t-on des variables et des outputs ?**  
+On utilise des variables et des outputs pour avoir un contrôle sur ce qu'on envoie en entrée et reçois en sortie plutôt que 
+de tout générer automatiquement.  
+Celà permet de par exemple choisir un nom spécifique qu'on contrôle avec une RegEx pour valider.  
+Afficher une description personnalisée etc..  
+
+**5. Qu'est-ce qu'une dérive de configuration ?**
+Il s'agit d'une différence entre l'état réel du provider (ici Terraform) et l'état souhaité.  
+
+**6. Quelle différence existe-t-il entre Infrastructure as Code et configuration manuelle ?**
+Gestion manuelle :  
+- Clics en console : Processus lent et sujet aux erreurs.  
+- Serveurs flocons : Configurations uniques et non documentées.  
+- Aucun historique : Impossible de savoir qui a modifié quoi.  
+
+Infrastructure as Code :
+- Fichiers texte : Définition claire en code informatique.  
+- Reproductible : Environnements identiques en 1 commande.  
+- Versionné sur Git : Traçabilité et retours en arrière faciles.  
+
+**7. Quel est l'intérêt de Git dans un projet IaC ?**  
+Git permet de versionner le code et de pouvoir facilement revenir en arrière dans les modifications.  
+GitHub est un ajout qui permet de collaborer entre plusieurs développeurs.  
+
+**8. Quelle est la différence entre un contrôle CI et un déploiement CD ?**  
+CI : vérifier que les modifications apportées au code sont correctes et peuvent être intégrées sans introduire de problème.  
+CD : préparer ou réaliser la livraison de ces modifications vers un environnement cible, comme la préproduction ou la production.  
+
+**9. Pourquoi faut-il examiner le plan avant d'appliquer une modification ?**  
+Il faut examiner le plan avant d'appliquer une modification pour être sûre que chaque modification proposées  
+est réellement voulue.  
+Une modification non désirée peut avoir des répercutions importantes sur l'infrastructure.  
+
+**10. Quelles précautions faut-il prendre avec les fichiers d'état et les secrets ?**  
+Il ne faut jamais commiter les fichiers d'états et les secrets sur un dépôt publique.  
+GitHub permet justement de gérer les secrets pour avoir un endroit sécurisé où les stocker.  
