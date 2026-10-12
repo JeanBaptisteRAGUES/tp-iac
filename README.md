@@ -105,4 +105,9 @@ Le conteneur doit être connecté à un réseau Docker qui doit exister à l'ava
 Après avoir arreté le conteneur Docker et lancé la commande terraform plan, le message  
 "docker_container.web will be created" apparaît.  
 
+**Exercice 6 :**
+Quand on essaie de push avec une erreur de formatage (ici dans main.tf), on obtient une erreur  
+dans nos GitHub Actions :
+ validate
+Terraform exited with code 1.
 
