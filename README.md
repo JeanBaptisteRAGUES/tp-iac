@@ -142,10 +142,10 @@ de tout générer automatiquement.
 Celà permet de par exemple choisir un nom spécifique qu'on contrôle avec une RegEx pour valider.  
 Afficher une description personnalisée etc..  
 
-**5. Qu'est-ce qu'une dérive de configuration ?**
+**5. Qu'est-ce qu'une dérive de configuration ?**  
 Il s'agit d'une différence entre l'état réel du provider (ici Terraform) et l'état souhaité.  
 
-**6. Quelle différence existe-t-il entre Infrastructure as Code et configuration manuelle ?**
+**6. Quelle différence existe-t-il entre Infrastructure as Code et configuration manuelle ?**  
 Gestion manuelle :  
 - Clics en console : Processus lent et sujet aux erreurs.  
 - Serveurs flocons : Configurations uniques et non documentées.  
