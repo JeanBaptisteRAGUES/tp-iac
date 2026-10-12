@@ -111,3 +111,6 @@ dans nos GitHub Actions :
  validate
 Terraform exited with code 1.
 
+**Exercice 7 :**
+
+
